@@ -1,18 +1,20 @@
-const { 
-    connectDatabase,
-    signupUser,
-} = require('./handlers');
+const { signupUser, signinUser } = require('./controllers/auth');
 
 const routes = [
   {
     method: 'GET',
-    path: '/test',
-    handler: connectDatabase,
+    path: '/',
+    handler: () => 'API GiziWise v1.0.0 Ready',
   },
   {
     method: 'POST',
     path: '/signup',
     handler: signupUser,
+  },
+  {
+    method: 'POST',
+    path: '/signin',
+    handler: signinUser,
   },
 ];
 
