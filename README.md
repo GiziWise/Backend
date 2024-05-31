@@ -3,7 +3,7 @@
 ## Table of Contents
 
 - Sign Up
-- Login
+- Sign In
 
 ## Sign Up
 
@@ -25,9 +25,9 @@
 | --- | --- | --- |
 | message | String | Message |
 
-## Login
+## Sign In
 
-- [POST] /login
+- [POST] /signin
 
 ### Request Body
 
