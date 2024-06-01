@@ -11,19 +11,19 @@
 
 ### Request Body
 
-| Parameter | Type | Required | Description |
-| --- | --- | --- | --- |
-| name | String | Yes | Username |
-| email | String | Yes | Email |
-| password | String | Yes | Password |
-| age | Number | Yes | Age |
-| gender | String | Yes | Gender |
+| Parameter | Type   | Required | Description |
+| --------- | ------ | -------- | ----------- |
+| name      | String | Yes      | Username    |
+| email     | String | Yes      | Email       |
+| password  | String | Yes      | Password    |
+| age       | Number | Yes      | Age         |
+| gender    | String | Yes      | Gender      |
 
 ### Response
 
-| Parameter | Type | Description |
-| --- | --- | --- |
-| message | String | Message |
+| Parameter | Type   | Description |
+| --------- | ------ | ----------- |
+| message   | String | Message     |
 
 ## Sign In
 
@@ -31,17 +31,16 @@
 
 ### Request Body
 
-| Parameter | Type | Required | Description |
-| --- | --- | --- | --- |
-| email | String | Yes | Email |
-| password | String | Yes | Password |
+| Parameter | Type   | Required | Description |
+| --------- | ------ | -------- | ----------- |
+| email     | String | Yes      | Email       |
+| password  | String | Yes      | Password    |
 
 ### Response
 
-| Parameter | Type | Description |
-| --- | --- | --- |
-| message | String | Message |
-| name | String | Username |
-| email | String | Email |
-| age | Number | Age |
-| gender | String | Gender |
+| Parameter | Type   | Description |
+| --------- | ------ | ----------- |
+| message   | String | Message     |
+| name      | String | Username    |
+| email     | String | Email       |
+| token     | String | Token       |
