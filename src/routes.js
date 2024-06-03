@@ -1,4 +1,5 @@
 const { signupUser, signinUser } = require('./controllers/auth');
+const { calculateBmiHandler } = require('./controllers/bmi');
 
 const routes = [
   {
@@ -15,6 +16,11 @@ const routes = [
     method: 'POST',
     path: '/signin',
     handler: signinUser,
+  },
+  {
+    method: 'POST',
+    path: '/bmi',
+    handler: calculateBmiHandler,
   },
 ];
 
