@@ -1,23 +1,15 @@
 const bcrypt = require('bcryptjs');
 const pool = require('../config/db');
 
-// const users = {
-//   id: null,
-//   email: '',
-//   password: '',
-//   name: '',
-//   age: '',
-//   gender: '',
-// };
-
 async function hashPassword(password) {
   const saltRounds = 10;
   return await bcrypt.hash(password, saltRounds);
 }
 
-async function createUser(email, password, name, age, gender) {
+// async function createUser(email, password, name, age, gender) {
+async function createUser(email, password) {
   const hashedPassword = await hashPassword(password);
-  const result = await pool.query('INSERT INTO users (email, password, name, age, gender) VALUES (?, ?, ?, ?, ?)', [email, hashedPassword, name, age, gender]);
+  const result = await pool.query('INSERT INTO users (email, password) VALUES (?, ?)', [email, hashedPassword]);
   const [rows] = result;
   return rows.insertId;
 }
