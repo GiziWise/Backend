@@ -74,8 +74,8 @@ async function signinUser(request, h) {
 
     const payload = { userId: user.id };
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
-      // expiresIn: '1h',
-      expiresIn: '15s',
+      expiresIn: '1h',
+      // expiresIn: '15s', // for testing valid token
     });
 
     return h
