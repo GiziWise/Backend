@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const Joi = require('joi');
 const bmiModel = require('../models/bmiModel');
 
