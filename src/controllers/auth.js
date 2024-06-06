@@ -6,9 +6,7 @@ require('dotenv').config();
 const userSchema = Joi.object({
   email: Joi.string().email().required(),
   password: Joi.string().min(8).required(),
-//  name: Joi.string().required(),
-//  age: Joi.number().integer().required(),
-//  gender: Joi.string().valid('male', 'female').required(),
+  confirm_password: Joi.ref('password'),
 });
 
 async function signupUser(request, h) {
@@ -77,6 +75,7 @@ async function signinUser(request, h) {
     const payload = { userId: user.id };
     const token = jwt.sign(payload, process.env.JWT_SECRET, {
       expiresIn: '1h',
+      // expiresIn: '15s', // for testing valid token
     });
 
     return h
