@@ -1,5 +1,4 @@
 const Hapi = require('@hapi/hapi');
-// eslint-disable-next-line import/no-extraneous-dependencies
 const hapiAuthJwt2 = require('hapi-auth-jwt2');
 const routes = require('./routes');
 const { verifyToken } = require('./middleware/auth');
@@ -15,7 +14,6 @@ const init = async () => {
 
   server.auth.strategy('jwt', 'jwt', {
     key: process.env.JWT_SECRET,
-    // validate: () => ({ isValid: true }),
     validate: verifyToken,
     verifyOptions: { algorithms: ['HS256'] },
   });
