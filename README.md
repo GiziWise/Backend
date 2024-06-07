@@ -47,6 +47,7 @@
 ## BMI Calculator
 
 - [POST] /bmi
+- Authorization Bearer token
 
 ### Request Body
 
@@ -65,6 +66,7 @@
 | message   | String | Message     |
 
 - [GET] /bmi
+- Authorization Bearer token
 
 ### Response
 
@@ -82,6 +84,7 @@
 | calory             | String | Total calories      |
 
 - [GET] /bmi/{id}
+- Authorization Bearer token
 
 ### Response
 
