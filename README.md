@@ -58,9 +58,15 @@
 | dob                | String | Date of birth |
 | gender             | String | Gender        |
 
+### Response
+
+| Parameter | Type   | Description |
+| --------- | ------ | ----------- |
+| message   | String | Message     |
+
 - [GET] /bmi
 
-### Response Body
+### Response
 
 | Parameter          | Type   | Description         |
 | ------------------ | ------ | ------------------- |
@@ -77,7 +83,7 @@
 
 - [GET] /bmi/{id}
 
-### Response Body
+### Response
 
 | Parameter          | Type   | Description         |
 | ------------------ | ------ | ------------------- |
