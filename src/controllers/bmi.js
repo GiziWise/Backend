@@ -91,6 +91,8 @@ async function calculateBmi(request, h) {
 
   // Return success response
   return h.response({
+    status: 'success',
+    message: 'BMI data saved successfully',
     bmi: bmiResult,
     category,
     weight,
@@ -123,6 +125,7 @@ async function getIdBmiData(request, h) {
 
     const responseData = {
       bmi: bmiData.bmi,
+      category: bmiData.category,
       weight: bmiData.weight,
       height: bmiData.height,
       age: bmiData.age,
