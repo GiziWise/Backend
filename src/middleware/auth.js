@@ -21,7 +21,7 @@ async function verifyToken(request, h) {
     request.auth = { credentials: { id: decoded.userId } };
     return h.continue;
   } catch (error) {
-    console.error('Token verification failed:', error);
+    console.error('Token verification failed:', error); // eslint-disable-line no-console
     return h.response({ error: 'Invalid token' }).code(401).takeover();
   }
 }
