@@ -25,11 +25,6 @@ async function signupUser(request, h) {
       password,
     } = await userSchema.validateAsync(request.payload, { abortEarly: false });
 
-    const user = await userModel.findUserByEmail(email);
-    if (user.length > 0) {
-      return h.response({ status: 'fail', message: 'User already exists' }).code(400);
-    }
-
     await userModel.createUser(email, password);
     return h.response({
       status: 'success',
@@ -48,67 +43,23 @@ async function signupUser(request, h) {
 }
 
 const signinSchema = Joi.object({
-  email: Joi.string().email().required(),
-  password: Joi.string().required(),
+  email: Joi.string().email().required().messages({
+    'string.email': 'Email must be a valid email address',
+    'any.required': 'Email is required',
+  }),
+  password: Joi.string().min(8).required().messages({
+    'string.min': 'Password must be at least 8 characters long',
+    'any.required': 'Password is required',
+  }),
 });
 
-// async function signinUser(request, h) {
-//   const { error, value } = signinSchema.validate(request.payload);
-//   if (error) {
-//     return h
-//       .response({ error: 'Invalid payload', details: error.details })
-//       .code(400);
-//   }
-//
-//   const { email, password } = value;
-//
-//   try {
-//     const user = await userModel.findUserByEmail(email);
-//     if (!user) {
-//       return h
-//         .response({ status: 'fail', message: 'Invalid credentials' })
-//         .code(401);
-//     }
-//
-//     const isValidPassword = await userModel.verifyPassword(
-//       password,
-//       user.password,
-//     );
-//     if (!isValidPassword) {
-//       return h
-//         .response({ status: 'fail', message: 'Invalid credentials' })
-//         .code(401);
-//     }
-//
-//     const payload = { userId: user.id };
-//     const token = jwt.sign(payload, process.env.JWT_SECRET, {
-//       expiresIn: '1h',
-//       // expiresIn: '15s', // for testing valid token
-//     });
-//
-//     return h
-//       .response({
-//         status: 'success',
-//         message: 'User signed in successfully',
-//         token,
-//         data: {
-//           id: user.id,
-//           email: user.email,
-//         },
-//       })
-//       .code(200);
-//   } catch (e) {
-//     console.error('Error signing in user:', e.message); // eslint-disable-line no-console
-//     return h
-//       .response({ error: 'Failed to sign in user', details: e.message })
-//       .code(500);
-//   }
-// }
-
 async function signinUser(request, h) {
-  const { email, password } = await signinSchema.validateAsync(request.payload);
-
   try {
+    const {
+      email,
+      password,
+    } = await signinSchema.validateAsync(request.payload, { abortEarly: false });
+
     const user = await userModel.findUserByEmail(email);
     if (user.length === 0) {
       return h.response({ status: 'fail', message: 'Invalid credentials email' }).code(401);
@@ -136,9 +87,12 @@ async function signinUser(request, h) {
         token,
       },
     }).code(200);
-  } catch (error) {
-    console.error('Error login user:', error.message); // eslint-disable-line no-console
-    return h.response({ error: 'Failed to login user', details: error.message }).code(500);
+  } catch (e) {
+    if (e.isJoi) {
+      return h.response({ status: 'fail', message: e.message }).code(400);
+    }
+    console.error('Error login user:', e.message); // eslint-disable-line no-console
+    return h.response({ error: 'Failed to login user', details: e.message }).code(500);
   }
 }
 
