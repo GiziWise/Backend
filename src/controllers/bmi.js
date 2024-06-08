@@ -104,6 +104,7 @@ async function calculateBmi(request, h) {
   }).code(200);
 }
 
+// Get all data BMI
 async function getAllBmiData(request, h) {
   try {
     const allBmiData = await bmiModel.getAllBmiData();
@@ -114,6 +115,7 @@ async function getAllBmiData(request, h) {
   }
 }
 
+// Get id data BMI
 async function getIdBmiData(request, h) {
   const { id } = request.params;
   try {

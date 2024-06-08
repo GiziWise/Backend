@@ -4,50 +4,26 @@ const userModel = require('../models/userModel');
 require('dotenv').config();
 
 const userSchema = Joi.object({
-  email: Joi.string().email().required(),
-  password: Joi.string().min(8).required(),
-  confirm_password: Joi.any().valid(Joi.ref('password')).required(),
+  email: Joi.string().email().required().messages({
+    'string.email': 'Email must be a valid email address',
+    'any.required': 'Email is required',
+  }),
+  password: Joi.string().min(8).required().messages({
+    'string.min': 'Password must be at least 8 characters long',
+    'any.required': 'Password is required',
+  }),
+  confirmPassword: Joi.any().valid(Joi.ref('password')).required().messages({
+    'any.only': 'Confirm password must match password',
+    'any.required': 'Confirm password is required',
+  }),
 });
 
-// async function signupUser(request, h) {
-//   const { error, value } = userSchema.validate(request.payload);
-//   if (error) {
-//     return h.response({ error: error.details[0].message }).code(400);
-//   }
-//   const { email, password } = value;
-//
-//   try {
-//     await userModel.createUser(email, password);
-//     return h
-//       .response({
-//         status: 'success',
-//         message: 'User created successfully',
-//         data: {
-//           email,
-//         },
-//       })
-//       .code(201);
-//   } catch (e) {
-//     if (e.code === 'ER_DUP_ENTRY') {
-//       return h.response({ message: 'User already exists' }).code(400);
-//     }
-//     return h
-//       .response({ error: 'Failed to create user', details: e.message })
-//       .code(500);
-//   }
-// }
-
 async function signupUser(request, h) {
-  const {
-    email,
-    password,
-    confirm_password,
-  } = await userSchema.validateAsync(request.payload);
-
   try {
-    if (password !== confirm_password) {
-      return h.response({ status: 'fail', message: 'Passwords do not match' }).code(400);
-    }
+    const {
+      email,
+      password,
+    } = await userSchema.validateAsync(request.payload, { abortEarly: false });
 
     const user = await userModel.findUserByEmail(email);
     if (user.length > 0) {
@@ -60,6 +36,12 @@ async function signupUser(request, h) {
       message: 'User created successfully',
     }).code(201);
   } catch (e) {
+    if (e.isJoi) {
+      return h.response({ status: 'fail', message: e.message }).code(400);
+    }
+    if (e.code === 'ER_DUP_ENTRY') {
+      return h.response({ status: 'fail', message: 'User already exists' }).code(400);
+    }
     console.error('Error creating user:', e.message); // eslint-disable-line no-console
     return h.response({ error: 'Failed to create user', details: e.message }).code(500);
   }

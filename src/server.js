@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 require('dotenv').config();
 const Hapi = require('@hapi/hapi');
 const hapiAuthJwt2 = require('hapi-auth-jwt2');
@@ -39,7 +40,7 @@ const init = async () => {
   server.route(routes);
 
   await server.start();
-  console.log(`Server berjalan pada ${server.info.uri}`);
+  console.log(`Server berjalan pada ${server.info.uri}`); // eslint-disable-line no-console
 };
 
 process.on('unhandledRejection', (err) => {
