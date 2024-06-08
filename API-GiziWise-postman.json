@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"email\": \"test5@example.com\",\n  \"password\": \"1234567890\",\n  \"confirm_password\": \"1234567890\"\n}",
+					"raw": "{\n  \"email\": \"email\",\n  \"password\": \"password\",\n  \"confirm_password\": \"password\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -44,12 +44,12 @@
 					"urlencoded": [
 						{
 							"key": "email",
-							"value": "test5@example.com",
+							"value": "email",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "1234567890",
+							"value": "password",
 							"type": "text"
 						}
 					]
