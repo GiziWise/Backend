@@ -1,16 +1,23 @@
+require('dotenv').config();
 const Hapi = require('@hapi/hapi');
 const hapiAuthJwt2 = require('hapi-auth-jwt2');
+const Cookie = require('@hapi/cookie');
 const routes = require('./routes');
 const { verifyToken } = require('./middleware/auth');
-require('dotenv').config();
 
 const init = async () => {
   const server = Hapi.server({
     port: process.env.PORT,
     host: '0.0.0.0',
+    routes: {
+      cors: {
+        origin: ['*'],
+        credentials: true,
+      },
+    },
   });
 
-  await server.register(hapiAuthJwt2);
+  await server.register([hapiAuthJwt2, Cookie]);
 
   server.auth.strategy('jwt', 'jwt', {
     key: process.env.JWT_SECRET,
@@ -18,7 +25,16 @@ const init = async () => {
     verifyOptions: { algorithms: ['HS256'] },
   });
 
-  // server.auth.default('jwt');
+  server.auth.register('session', 'cookie', {
+    cookie: {
+      name: 'session-cookie',
+      password: process.env.COOKIE_SECRET,
+      isSecure: process.env.NODE_ENV === 'production',
+      itHttpOnly: true,
+      path: '/',
+    },
+    redirectTo: false,
+  });
 
   server.route(routes);
 
