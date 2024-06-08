@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"email\": \"test4@example.com\",\n  \"password\": \"1234567890\",\n  \"confirm_password\": \"1234567890\"\n}",
+					"raw": "{\n  \"email\": \"test5@example.com\",\n  \"password\": \"1234567890\",\n  \"confirm_password\": \"1234567890\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -44,7 +44,7 @@
 					"urlencoded": [
 						{
 							"key": "email",
-							"value": "test@example.com",
+							"value": "test5@example.com",
 							"type": "text"
 						},
 						{
@@ -75,12 +75,12 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcxNzc3OTkwOSwiZXhwIjoxNzE3NzgzNTA5fQ.q0iem9hA84BLoEaWUholJcJ5HNiOEAofXA-EMNj3lGA"
+						"value": "Bearer token"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"weight\": 60,\n  \"height\": 170,\n  \"gender\": \"male\",\n  \"dob\": \"2000-01-01\"\n}\n",
+					"raw": "{\n  \"weight\": 50,\n  \"height\": 170,\n  \"gender\": \"female\",\n  \"dob\": \"2000-01-01\"\n}\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -108,7 +108,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcxNzc4MDI2MiwiZXhwIjoxNzE3NzgzODYyfQ.TkWIeCto4KgP7OfTR4fWq05U8Y9H1xtjzwVhPvit9iM"
+						"value": "Bearer token"
 					}
 				],
 				"url": {
@@ -133,7 +133,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcxNzc4MDI2MiwiZXhwIjoxNzE3NzgzODYyfQ.TkWIeCto4KgP7OfTR4fWq05U8Y9H1xtjzwVhPvit9iM"
+						"value": "Bearer token"
 					}
 				],
 				"url": {
