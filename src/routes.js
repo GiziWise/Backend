@@ -1,5 +1,5 @@
 const { signupUser, signinUser } = require('./controllers/auth');
-const { calculateBmiHandler } = require('./controllers/bmi');
+const { calculateBmi, getAllBmiData, getIdBmiData } = require('./controllers/bmi');
 const { verifyToken } = require('./middleware/auth');
 
 const routes = [
@@ -24,7 +24,23 @@ const routes = [
     options: {
       pre: [{ method: verifyToken }],
     },
-    handler: calculateBmiHandler,
+    handler: calculateBmi,
+  },
+  {
+    method: 'GET',
+    path: '/bmi',
+    options: {
+      pre: [{ method: verifyToken }],
+    },
+    handler: getAllBmiData,
+  },
+  {
+    method: 'GET',
+    path: '/bmi/{id}',
+    options: {
+      pre: [{ method: verifyToken }],
+    },
+    handler: getIdBmiData,
   },
 ];
 

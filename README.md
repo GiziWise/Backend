@@ -4,6 +4,8 @@
 
 - Sign Up
 - Sign In
+- BMI Calculator
+- Sign Out [SOON]
 
 ## Sign Up
 
@@ -11,13 +13,11 @@
 
 ### Request Body
 
-| Parameter | Type   | Required | Description |
-| --------- | ------ | -------- | ----------- |
-| name      | String | Yes      | Username    |
-| email     | String | Yes      | Email       |
-| password  | String | Yes      | Password    |
-| age       | Number | Yes      | Age         |
-| gender    | String | Yes      | Gender      |
+| Parameter         | Type   | Required | Description      |
+| ----------------- | ------ | -------- | ---------------- |
+| email             | String | Yes      | Email            |
+| password          | String | Yes      | Password         |
+| confirm_password  | String | Yes      | Confirm Password |
 
 ### Response
 
@@ -41,6 +41,59 @@
 | Parameter | Type   | Description |
 | --------- | ------ | ----------- |
 | message   | String | Message     |
-| name      | String | Username    |
 | email     | String | Email       |
 | token     | String | Token       |
+
+## BMI Calculator
+
+- [POST] /bmi
+- Authorization Bearer token
+
+### Request Body
+
+| Parameter          | Type   | Description   |
+| ------------------ | ------ | ------------- |
+| weight             | int    | Weight in kg  |
+| height             | int    | Height in cm  |
+| dob                | date   | Date of birth |
+| gender             | String | Gender        |
+
+### Response
+
+| Parameter | Type   | Description |
+| --------- | ------ | ----------- |
+| message   | String | Message     |
+
+- [GET] /bmi
+- Authorization Bearer token
+
+### Response
+
+| Parameter          | Type   | Description         |
+| ------------------ | ------ | ------------------- |
+| id                 | int    | Id for store BMI    |
+| user_id            | int    | Id from user        |
+| bmi                | float  | Score BMI           |
+| category           | String | Weight category     |
+| weight             | int    | Weight in kg        |
+| height             | int    | Height in cm        |
+| age                | int    | Age                 |
+| gender             | String | Gender              |
+| healthyWeightRange | String | Mantain good weight |
+| calory             | float  | Total calories      |
+
+- [GET] /bmi/{id}
+- Authorization Bearer token
+
+### Response
+
+| Parameter          | Type   | Description         |
+| ------------------ | ------ | ------------------- |
+| bmi                | float  | Score BMI           |
+| category           | String | Weight category     |
+| weight             | int    | Weight in kg        |
+| height             | int    | Height in cm        |
+| age                | int    | Age                 |
+| gender             | String | Gender              |
+| healthyWeightRange | String | Mantain good weight |
+| calory             | float  | Total calories      |

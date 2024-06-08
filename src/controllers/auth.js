@@ -6,33 +6,31 @@ require('dotenv').config();
 const userSchema = Joi.object({
   email: Joi.string().email().required(),
   password: Joi.string().min(8).required(),
-  confirm_password: Joi.ref('password'),
+  confirm_password: Joi.any().valid(Joi.ref('password')).required(),
 });
 
 async function signupUser(request, h) {
   const { error, value } = userSchema.validate(request.payload);
   if (error) {
-    return h
-      .response({ error: 'Invalid payload', details: error.details })
-      .code(400);
+    return h.response({ error: error.details[0].message }).code(400);
   }
-
-  const {
-    // email, password, name, age, gender,
-    email, password,
-  } = value;
+  const { email, password } = value;
 
   try {
-    // await userModel.createUser(email, password, name, age, gender);
     await userModel.createUser(email, password);
     return h
       .response({
         status: 'success',
-        message: 'User registration successful',
+        message: 'User created successfully',
+        data: {
+          email,
+        },
       })
       .code(201);
   } catch (e) {
-    console.error('Error creating user:', e.message); // eslint-disable-line no-console
+    if (e.code === 'ER_DUP_ENTRY') {
+      return h.response({ message: 'User already exists' }).code(400);
+    }
     return h
       .response({ error: 'Failed to create user', details: e.message })
       .code(500);
@@ -83,6 +81,10 @@ async function signinUser(request, h) {
         status: 'success',
         message: 'User signed in successfully',
         token,
+        data: {
+          id: user.id,
+          email: user.email,
+        },
       })
       .code(200);
   } catch (e) {
