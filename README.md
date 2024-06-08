@@ -53,10 +53,9 @@
 
 | Parameter          | Type   | Description   |
 | ------------------ | ------ | ------------- |
-| message            | String | Message       |
-| weight             | String | Weight in kg  |
-| height             | String | Height in cm  |
-| dob                | String | Date of birth |
+| weight             | int    | Weight in kg  |
+| height             | int    | Height in cm  |
+| dob                | date   | Date of birth |
 | gender             | String | Gender        |
 
 ### Response
@@ -72,16 +71,16 @@
 
 | Parameter          | Type   | Description         |
 | ------------------ | ------ | ------------------- |
-| id                 | String | Id for store BMI    |
-| user_id            | String | Id from user        |
-| bmi                | String | Score BMI           |
+| id                 | int    | Id for store BMI    |
+| user_id            | int    | Id from user        |
+| bmi                | float  | Score BMI           |
 | category           | String | Weight category     |
-| weight             | String | Weight in kg        |
-| height             | String | Height in cm        |
-| age                | String | Age                 |
+| weight             | int    | Weight in kg        |
+| height             | int    | Height in cm        |
+| age                | int    | Age                 |
 | gender             | String | Gender              |
 | healthyWeightRange | String | Mantain good weight |
-| calory             | String | Total calories      |
+| calory             | float  | Total calories      |
 
 - [GET] /bmi/{id}
 - Authorization Bearer token
@@ -90,11 +89,11 @@
 
 | Parameter          | Type   | Description         |
 | ------------------ | ------ | ------------------- |
-| bmi                | String | Score BMI           |
+| bmi                | float  | Score BMI           |
 | category           | String | Weight category     |
-| weight             | String | Weight in kg        |
-| height             | String | Height in cm        |
-| age                | String | Age                 |
+| weight             | int    | Weight in kg        |
+| height             | int    | Height in cm        |
+| age                | int    | Age                 |
 | gender             | String | Gender              |
 | healthyWeightRange | String | Mantain good weight |
-| calory             | String | Total calories      |
+| calory             | float  | Total calories      |
