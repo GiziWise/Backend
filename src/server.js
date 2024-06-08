@@ -7,7 +7,7 @@ const { verifyToken } = require('./middleware/auth');
 
 const init = async () => {
   const server = Hapi.server({
-    port: process.env.PORT,
+    port: 3000,
     host: '0.0.0.0',
     routes: {
       cors: {
@@ -25,12 +25,12 @@ const init = async () => {
     verifyOptions: { algorithms: ['HS256'] },
   });
 
-  server.auth.register('session', 'cookie', {
+  server.auth.strategy('session', 'cookie', {
     cookie: {
       name: 'session-cookie',
       password: process.env.COOKIE_SECRET,
       isSecure: process.env.NODE_ENV === 'production',
-      itHttpOnly: true,
+      isHttpOnly: true,
       path: '/',
     },
     redirectTo: false,
@@ -39,7 +39,7 @@ const init = async () => {
   server.route(routes);
 
   await server.start();
-  console.log(`Server berjalan pada ${server.info.uri}`); // eslint-disable-line no-console
+  console.log(`Server berjalan pada ${server.info.uri}`);
 };
 
 process.on('unhandledRejection', (err) => {

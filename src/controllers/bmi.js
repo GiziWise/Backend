@@ -65,8 +65,8 @@ async function calculateBmi(request, h) {
   const tee = bmr * 1.2;
   const calory = Math.round(tee * 10) / 10;
 
-  // Save BMI data to the database
-  const userId = request.auth.credentials ? request.auth.credentials.id : null;
+  // Save BMI data to the database with token cookie
+  const { userId } = request.auth.credentials;
   if (!userId) {
     return h.response({ error: 'User not authenticated.' }).code(401);
   }

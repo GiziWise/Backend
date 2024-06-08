@@ -2,7 +2,6 @@ const {
   signupUser, signinUser, currentUser, logoutUser,
 } = require('./controllers/auth');
 const { calculateBmi, getAllBmiData, getIdBmiData } = require('./controllers/bmi');
-// const { verifyToken } = require('./middleware/auth');
 
 const routes = [
   {

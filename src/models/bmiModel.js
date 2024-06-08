@@ -31,8 +31,8 @@ async function getAllBmiData() {
 async function getIdBmiData(id) {
   try {
     const [rows] = await pool.query('SELECT * FROM bmi WHERE id = ?', [id]);
-    // return rows.length ? rows[0] : null;
-    return rows[0];
+    return rows.length ? rows[0] : null;
+    // return rows[0];
   } catch (error) {
     console.error('Error fetching BMI data by ID:', error); // eslint-disable-line no-console
     return { success: false, message: error.message };
