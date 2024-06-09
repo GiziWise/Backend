@@ -1,6 +1,7 @@
-const { signupUser, signinUser } = require('./controllers/auth');
+const {
+  signupUser, signinUser, currentUser, logoutUser,
+} = require('./controllers/auth');
 const { calculateBmi, getAllBmiData, getIdBmiData } = require('./controllers/bmi');
-const { verifyToken } = require('./middleware/auth');
 
 const routes = [
   {
@@ -16,13 +17,16 @@ const routes = [
   {
     method: 'POST',
     path: '/signin',
+    options: {
+      auth: false,
+    },
     handler: signinUser,
   },
   {
     method: 'POST',
     path: '/bmi',
     options: {
-      pre: [{ method: verifyToken }],
+      auth: 'jwt',
     },
     handler: calculateBmi,
   },
@@ -30,7 +34,7 @@ const routes = [
     method: 'GET',
     path: '/bmi',
     options: {
-      pre: [{ method: verifyToken }],
+      auth: 'jwt',
     },
     handler: getAllBmiData,
   },
@@ -38,9 +42,25 @@ const routes = [
     method: 'GET',
     path: '/bmi/{id}',
     options: {
-      pre: [{ method: verifyToken }],
+      auth: 'jwt',
     },
     handler: getIdBmiData,
+  },
+  {
+    method: 'GET',
+    path: '/me',
+    options: {
+      auth: 'jwt',
+    },
+    handler: currentUser,
+  },
+  {
+    method: 'POST',
+    path: '/logout',
+    options: {
+      auth: 'jwt',
+    },
+    handler: logoutUser,
   },
 ];
 

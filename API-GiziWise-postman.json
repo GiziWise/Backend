@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"email\": \"email\",\n  \"password\": \"password\",\n  \"confirm_password\": \"password\"\n}",
+					"raw": "{\n  \"email\": \"email\",\n  \"password\": \"password\",\n  \"confirmPassword\": \"password\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -21,10 +21,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/signup",
+					"raw": "http://0.0.0.0:3000/signup",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"0",
+						"0",
+						"0",
+						"0"
 					],
 					"port": "3000",
 					"path": [
@@ -55,10 +58,13 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:3000/signin",
+					"raw": "http://0.0.0.0:3000/signin",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"0",
+						"0",
+						"0",
+						"0"
 					],
 					"port": "3000",
 					"path": [
@@ -72,15 +78,10 @@
 			"name": "Data BMI",
 			"request": {
 				"method": "POST",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer token"
-					}
-				],
+				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"weight\": 50,\n  \"height\": 170,\n  \"gender\": \"female\",\n  \"dob\": \"2000-01-01\"\n}\n",
+					"raw": "{\n  \"weight\": 60,\n  \"height\": 170,\n  \"gender\": \"male\",\n  \"dob\": \"2000-01-01\"\n}\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -88,10 +89,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/bmi",
+					"raw": "http://0.0.0.0:3000/bmi",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"0",
+						"0",
+						"0",
+						"0"
 					],
 					"port": "3000",
 					"path": [
@@ -105,22 +109,20 @@
 			"name": "Data BMI by id",
 			"request": {
 				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer token"
-					}
-				],
+				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/bmi/3",
+					"raw": "http://0.0.0.0:3000/bmi/1",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"0",
+						"0",
+						"0",
+						"0"
 					],
 					"port": "3000",
 					"path": [
 						"bmi",
-						"3"
+						"1"
 					]
 				}
 			},
@@ -130,21 +132,63 @@
 			"name": "Data All BMI",
 			"request": {
 				"method": "GET",
-				"header": [
-					{
-						"key": "Authorization",
-						"value": "Bearer token"
-					}
-				],
+				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/bmi",
+					"raw": "http://0.0.0.0:3000/bmi",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"0",
+						"0",
+						"0",
+						"0"
 					],
 					"port": "3000",
 					"path": [
 						"bmi"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Data profile",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:3000/me",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "3000",
+					"path": [
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://0.0.0.0:3000/logout",
+					"protocol": "http",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "3000",
+					"path": [
+						"logout"
 					]
 				}
 			},

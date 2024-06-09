@@ -65,10 +65,10 @@ async function calculateBmi(request, h) {
   const tee = bmr * 1.2;
   const calory = Math.round(tee * 10) / 10;
 
-  // Save BMI data to the database
-  const userId = request.auth.credentials ? request.auth.credentials.id : null;
+  // Save BMI data to the database with token cookie
+  const { userId } = request.auth.credentials;
   if (!userId) {
-    return h.response({ error: 'User not authenticated.' }).code(401);
+    return h.response({ status: 'fail', message: 'User not authenticated.' }).code(401);
   }
   const bmiData = {
     bmi: bmiResult,
@@ -86,7 +86,7 @@ async function calculateBmi(request, h) {
   if (!saveResult.success) {
     console.error('Failed to save BMI data to the database:', saveResult.message);
     // Handle error response
-    return h.response({ error: 'Failed to save BMI data.' }).code(500);
+    return h.response({ status: 'fail', message: 'Failed to save BMI data.' }).code(500);
   }
 
   // Return success response
@@ -104,9 +104,13 @@ async function calculateBmi(request, h) {
   }).code(200);
 }
 
+// Get all data BMI
 async function getAllBmiData(request, h) {
   try {
     const allBmiData = await bmiModel.getAllBmiData();
+    if (allBmiData.length === 0) {
+      return h.response({ status: 'fail', message: 'No BMI data found.' }).code(404);
+    }
     return h.response(allBmiData).code(200);
   } catch (error) {
     console.error('Error fetching BMI data:', error);
@@ -114,13 +118,14 @@ async function getAllBmiData(request, h) {
   }
 }
 
+// Get id data BMI
 async function getIdBmiData(request, h) {
   const { id } = request.params;
   try {
     const bmiData = await bmiModel.getIdBmiData(id);
 
     if (!bmiData) {
-      return h.response({ error: 'BMI data not found.' }).code(404);
+      return h.response({ status: 'fail', message: 'BMI data not found.' }).code(404);
     }
 
     const responseData = {

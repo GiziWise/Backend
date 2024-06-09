@@ -2,26 +2,19 @@
 const bcrypt = require('bcryptjs');
 const pool = require('../config/db');
 
-async function hashPassword(password) {
-  const saltRounds = 10;
-  return await bcrypt.hash(password, saltRounds);
-}
-
 async function createUser(email, password) {
-  const hashedPassword = await hashPassword(password);
-  const result = await pool.query('INSERT INTO users (email, password) VALUES (?, ?)', [email, hashedPassword]);
-  const [rows] = result;
-  return rows.insertId;
+  const hashedPassword = await bcrypt.hash(password, 10);
+  await pool.query('INSERT INTO users (email, password) VALUES (?, ?)', [email, hashedPassword]);
 }
 
 async function findUserByEmail(email) {
-  const [rows] = await pool.query('SELECT * FROM users WHERE email = ?', [email]);
-  return rows[0];
+  const result = await pool.query('SELECT * FROM users WHERE email = ?', [email]);
+  return result.length > 0 ? result[0] : undefined;
 }
 
-async function findUserById(userId) {
-  const [rows] = await pool.query('SELECT * FROM users WHERE id = ?', [userId]);
-  return rows[0];
+async function findUserById(id) {
+  const result = await pool.query('SELECT * FROM users WHERE id = ?', [id]);
+  return result.length > 0 ? result[0] : undefined;
 }
 
 async function verifyPassword(inputPassword, storedPassword) {

@@ -5,14 +5,14 @@
 - Sign Up
 - Sign In
 - BMI Calculator
-- Sign Out [SOON]
+- Me/Profile
+- Logout
 
 ## Sign Up
 
 - [POST] /signup
 
 ### Request Body
-
 | Parameter         | Type   | Required | Description      |
 | ----------------- | ------ | -------- | ---------------- |
 | email             | String | Yes      | Email            |
@@ -20,7 +20,6 @@
 | confirm_password  | String | Yes      | Confirm Password |
 
 ### Response
-
 | Parameter | Type   | Description |
 | --------- | ------ | ----------- |
 | message   | String | Message     |
@@ -30,27 +29,23 @@
 - [POST] /signin
 
 ### Request Body
-
 | Parameter | Type   | Required | Description |
 | --------- | ------ | -------- | ----------- |
 | email     | String | Yes      | Email       |
 | password  | String | Yes      | Password    |
 
 ### Response
-
 | Parameter | Type   | Description |
 | --------- | ------ | ----------- |
 | message   | String | Message     |
-| email     | String | Email       |
 | token     | String | Token       |
 
 ## BMI Calculator
 
 - [POST] /bmi
-- Authorization Bearer token
+- Cookie token
 
 ### Request Body
-
 | Parameter          | Type   | Description   |
 | ------------------ | ------ | ------------- |
 | weight             | int    | Weight in kg  |
@@ -59,16 +54,14 @@
 | gender             | String | Gender        |
 
 ### Response
-
 | Parameter | Type   | Description |
 | --------- | ------ | ----------- |
 | message   | String | Message     |
 
 - [GET] /bmi
-- Authorization Bearer token
+- Cookie token
 
 ### Response
-
 | Parameter          | Type   | Description         |
 | ------------------ | ------ | ------------------- |
 | id                 | int    | Id for store BMI    |
@@ -83,10 +76,9 @@
 | calory             | float  | Total calories      |
 
 - [GET] /bmi/{id}
-- Authorization Bearer token
+- Cookie token
 
 ### Response
-
 | Parameter          | Type   | Description         |
 | ------------------ | ------ | ------------------- |
 | bmi                | float  | Score BMI           |
@@ -97,3 +89,24 @@
 | gender             | String | Gender              |
 | healthyWeightRange | String | Mantain good weight |
 | calory             | float  | Total calories      |
+
+## Me/Profile
+
+- [GET] /me
+- Cookie token
+
+### Response
+| Parameter | Type   | Description |
+| --------- | ------ | ----------- |
+| message   | String | Message     |
+| email     | String | email       |
+
+## Logout
+
+- [POST] /logout
+- Cookie token
+
+### Response
+| Parameter | Type   | Description |
+| --------- | ------ | ----------- |
+| message   | String | Message     |
