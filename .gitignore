@@ -2,4 +2,5 @@
 .env-lokal
 .env-prod
 node_modules
-deploy-cloud-run.sh
+mop-deploy-in-prod.txt
+API-GiziWise-postman-prod.json
