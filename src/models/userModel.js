@@ -2,9 +2,9 @@
 const bcrypt = require('bcryptjs');
 const pool = require('../config/db');
 
-async function createUser(email, password) {
+async function createUser(nama, email, password) {
   const hashedPassword = await bcrypt.hash(password, 10);
-  await pool.query('INSERT INTO users (email, password) VALUES (?, ?)', [email, hashedPassword]);
+  await pool.query('INSERT INTO users (nama, email, password) VALUES (?, ?, ?)', [nama, email, hashedPassword]);
 }
 
 async function findUserByEmail(email) {
