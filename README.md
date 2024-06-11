@@ -15,9 +15,10 @@
 ### Request Body
 | Parameter         | Type   | Required | Description      |
 | ----------------- | ------ | -------- | ---------------- |
+| nama              | String | Yes      | Email            |
 | email             | String | Yes      | Email            |
 | password          | String | Yes      | Password         |
-| confirm_password  | String | Yes      | Confirm Password |
+| confirmPassword   | String | Yes      | Confirm Password |
 
 ### Response
 | Parameter | Type   | Description |
@@ -54,9 +55,18 @@
 | gender             | String | Gender        |
 
 ### Response
-| Parameter | Type   | Description |
-| --------- | ------ | ----------- |
-| message   | String | Message     |
+| Parameter          | Type   | Description         |
+| ------------------ | ------ | ------------------- |
+| message            | String | Message             |
+| bmi                | float  | Score BMI           |
+| category           | String | Weight category     |
+| weight             | int    | Weight in kg        |
+| height             | int    | Height in cm        |
+| dob                | date   | Date of birth       |
+| age                | int    | Age                 |
+| gender             | String | Gender              |
+| healthyWeightRange | String | Mantain good weight |
+| calory             | float  | Total calories      |
 
 - [GET] /bmi
 - Cookie token
@@ -70,6 +80,7 @@
 | category           | String | Weight category     |
 | weight             | int    | Weight in kg        |
 | height             | int    | Height in cm        |
+| dob                | date   | Date of birth       |
 | age                | int    | Age                 |
 | gender             | String | Gender              |
 | healthyWeightRange | String | Mantain good weight |
@@ -85,6 +96,7 @@
 | category           | String | Weight category     |
 | weight             | int    | Weight in kg        |
 | height             | int    | Height in cm        |
+| dob                | date   | Date of birth       |
 | age                | int    | Age                 |
 | gender             | String | Gender              |
 | healthyWeightRange | String | Mantain good weight |
@@ -96,10 +108,16 @@
 - Cookie token
 
 ### Response
-| Parameter | Type   | Description |
-| --------- | ------ | ----------- |
-| message   | String | Message     |
-| email     | String | email       |
+| Parameter | Type   | Description   |
+| --------- | ------ | ------------- |
+| nama      | String | Nama          |
+| email     | String | email         |
+| dob       | date   | Date of birth |
+| gender    | String | Gender        |
+| age       | int    | Age           |
+| height    | int    | Height        |
+| weight    | int    | Weight        |
+
 
 ## Logout
 
