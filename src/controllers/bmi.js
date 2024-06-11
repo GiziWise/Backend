@@ -94,63 +94,64 @@ async function calculateBmi(request, h) {
   return h.response({
     status: 'success',
     message: 'BMI data saved successfully',
-    bmi: bmiResult,
-    category,
-    weight,
-    height,
-    dob,
-    age,
-    gender,
-    healthyWeightRange,
-    calory,
   }).code(200);
 }
 
 // Get all data BMI
-async function getAllBmiData(request, h) {
-  try {
-    const allBmiData = await bmiModel.getAllBmiData();
-    if (allBmiData.length === 0) {
-      return h.response({ status: 'fail', message: 'No BMI data found.' }).code(404);
-    }
-    return h.response(allBmiData).code(200);
-  } catch (error) {
-    console.error('Error fetching BMI data:', error);
-    return h.response({ error: 'Failed to fetch BMI data.' }).code(500);
-  }
-}
+// async function getAllBmiData(request, h) {
+//   try {
+//     const allBmiData = await bmiModel.getAllBmiData();
+//     if (allBmiData.length === 0) {
+//       return h.response({ status: 'fail', message: 'No BMI data found.' }).code(404);
+//     }
+//     return h.response(allBmiData).code(200);
+//   } catch (error) {
+//     console.error('Error fetching BMI data:', error);
+//     return h.response({ error: 'Failed to fetch BMI data.' }).code(500);
+//   }
+// }
 
 // Get id data BMI
 async function getIdBmiData(request, h) {
-  const { id } = request.params;
   try {
-    const bmiData = await bmiModel.getIdBmiData(id);
-
-    if (!bmiData) {
-      return h.response({ status: 'fail', message: 'BMI data not found.' }).code(404);
+    const { user } = request;
+    if (!user) {
+      return h.response({ status: 'fail', message: 'User not found' }).code(404);
     }
-
-    const responseData = {
-      bmi: bmiData.bmi,
-      category: bmiData.category,
-      weight: bmiData.weight,
-      height: bmiData.height,
-      dob: bmiData.dob,
-      age: bmiData.age,
-      gender: bmiData.gender,
-      healthyWeightRange: bmiData.healthy_weight_range,
-      calory: bmiData.calory,
-    };
-
-    return h.response(responseData).code(200);
+    const bmi = await bmiModel.getBmiByUserId(user.id);
+    if (!bmi) {
+      return h.respose({
+        status: 'success',
+        message: 'BMI data not found',
+        bmi: {
+          id: user.id,
+          nama: user.nama,
+          email: user.email,
+          bmi: null,
+        },
+      }).code(200);
+    }
+    return h.response({
+      status: 'success',
+      data: {
+        bmi: bmi.bmi,
+        category: bmi.category,
+        weight: bmi.weight,
+        height: bmi.height,
+        age: bmi.age,
+        gender: bmi.gender,
+        healthyWeightRange: bmi.healthy_weight_range,
+        calory: bmi.calory,
+      },
+    }).code(200);
   } catch (error) {
-    console.error('Error fetching BMI data:', error);
-    return h.response({ error: 'Failed to fetch BMI data' }).code(500);
+    console.error('Error getting BMI data by token', error.message);
+    return h.response({ status: 'fail', message: 'Failed to get BMI data' }).code(500);
   }
 }
 
 module.exports = {
   calculateBmi,
-  getAllBmiData,
+  // getAllBmiData,
   getIdBmiData,
 };
