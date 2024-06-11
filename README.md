@@ -25,6 +25,13 @@
 | --------- | ------ | ----------- |
 | message   | String | Message     |
 
+```
+{
+    "status": "success",
+    "message": "User created successfully"
+}
+```
+
 ## Sign In
 
 - [POST] /signin
@@ -39,7 +46,17 @@
 | Parameter | Type   | Description |
 | --------- | ------ | ----------- |
 | message   | String | Message     |
-| token     | String | Token       |
+
+```
+{
+    "status": "success",
+    "message": "Login successfully",
+    "data": {
+        "id": 8,
+        "token": "token jwt"
+    }
+}
+```
 
 ## BMI Calculator
 
@@ -58,49 +75,43 @@
 | Parameter          | Type   | Description         |
 | ------------------ | ------ | ------------------- |
 | message            | String | Message             |
-| bmi                | float  | Score BMI           |
-| category           | String | Weight category     |
-| weight             | int    | Weight in kg        |
-| height             | int    | Height in cm        |
-| dob                | date   | Date of birth       |
-| age                | int    | Age                 |
-| gender             | String | Gender              |
-| healthyWeightRange | String | Mantain good weight |
-| calory             | float  | Total calories      |
 
+```
+{
+    "status": "success",
+    "message": "BMI data saved successfully"
+}
+```
 - [GET] /bmi
 - Cookie token
 
 ### Response
 | Parameter          | Type   | Description         |
 | ------------------ | ------ | ------------------- |
-| id                 | int    | Id for store BMI    |
-| user_id            | int    | Id from user        |
 | bmi                | float  | Score BMI           |
 | category           | String | Weight category     |
 | weight             | int    | Weight in kg        |
 | height             | int    | Height in cm        |
-| dob                | date   | Date of birth       |
 | age                | int    | Age                 |
 | gender             | String | Gender              |
 | healthyWeightRange | String | Mantain good weight |
 | calory             | float  | Total calories      |
 
-- [GET] /bmi/{id}
-- Cookie token
-
-### Response
-| Parameter          | Type   | Description         |
-| ------------------ | ------ | ------------------- |
-| bmi                | float  | Score BMI           |
-| category           | String | Weight category     |
-| weight             | int    | Weight in kg        |
-| height             | int    | Height in cm        |
-| dob                | date   | Date of birth       |
-| age                | int    | Age                 |
-| gender             | String | Gender              |
-| healthyWeightRange | String | Mantain good weight |
-| calory             | float  | Total calories      |
+```
+{
+    "status": "success",
+    "data": {
+        "bmi": 24.2,
+        "category": "Normal",
+        "weight": 70,
+        "height": 170,
+        "age": 24,
+        "gender": "male",
+        "healthyWeightRange": "53.5 kg - 72 kg",
+        "calory": 2046.9
+    }
+}
+```
 
 ## Me/Profile
 
@@ -119,6 +130,24 @@
 | weight    | int    | Weight        |
 
 
+```
+{
+    "status": "success",
+    "data": {
+        "id": 8,
+        "nama": "namaaku",
+        "email": "test@example.com",
+        "bmi": {
+            "dob": "1999-12-31T17:00:00.000Z",
+            "gender": "male",
+            "age": 24,
+            "weight": 70,
+            "height": 170
+        }
+    }
+}
+```
+
 ## Logout
 
 - [POST] /logout
@@ -128,3 +157,10 @@
 | Parameter | Type   | Description |
 | --------- | ------ | ----------- |
 | message   | String | Message     |
+
+```
+{
+    "status": "success",
+    "message": "Logout successfully",
+}
+```
