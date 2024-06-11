@@ -1,7 +1,7 @@
 const {
   signupUser, signinUser, currentUser, logoutUser,
 } = require('./controllers/auth');
-const { calculateBmi, getAllBmiData, getIdBmiData } = require('./controllers/bmi');
+const { calculateBmi, getIdBmiData } = require('./controllers/bmi');
 
 const routes = [
   {
@@ -30,17 +30,17 @@ const routes = [
     },
     handler: calculateBmi,
   },
+  // {
+  //   method: 'GET',
+  //   path: '/bmi',
+  //   options: {
+  //     auth: 'jwt',
+  //   },
+  //   handler: getAllBmiData,
+  // },
   {
     method: 'GET',
     path: '/bmi',
-    options: {
-      auth: 'jwt',
-    },
-    handler: getAllBmiData,
-  },
-  {
-    method: 'GET',
-    path: '/bmi/{id}',
     options: {
       auth: 'jwt',
     },
