@@ -16,7 +16,7 @@ const bmiSchema = Joi.object({
     'any.only': 'Must be male or female',
     'any.required': 'Gender is required',
   }),
-  dob: Joi.date().iso().required().messages({
+  dob: Joi.date().required().messages({
     'date.format': 'Must be a valid date of birth',
     'any.required': 'Date of birth is required',
   }),
