@@ -133,7 +133,7 @@ async function currentUser(request, h) {
 
     return h.response({
       status: 'success',
-      data: {
+      dataakun: {
         id: user.id,
         nama: user.nama,
         email: user.email,
