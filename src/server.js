@@ -39,6 +39,22 @@ const init = async () => {
 
   server.route(routes);
 
+  server.ext('onPreResponse', (request, h) => {
+    const { response } = request;
+    if (response.isBoom) {
+      const error = response;
+      const { statusCode } = error.output;
+
+      if (statusCode === 401) {
+        return h.response({ status: 'fail', message: 'Unauthorized' }).code(401);
+      } if (statusCode === 400) {
+        return h.response({ status: 'fail', message: 'Invalid request payload JSON format' }).code(400);
+      }
+      return h.response({ status: 'fail', message: 'Internal Server Error' }).code(500);
+    }
+    return h.continue;
+  });
+
   await server.start();
   console.log(`Server berjalan pada ${server.info.uri}`); // eslint-disable-line no-console
 };
