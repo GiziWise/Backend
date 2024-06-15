@@ -2,6 +2,7 @@ const {
   signupUser, signinUser, currentUser, logoutUser,
 } = require('./controllers/auth');
 const { calculateBmi, getIdBmiData } = require('./controllers/bmi');
+const { predictModel } = require('./controllers/predict');
 
 const routes = [
   {
@@ -45,6 +46,14 @@ const routes = [
       auth: 'jwt',
     },
     handler: getIdBmiData,
+  },
+  {
+    method: 'POST',
+    path: '/predict',
+    options: {
+      auth: 'jwt',
+    },
+    handler: predictModel,
   },
   {
     method: 'GET',
