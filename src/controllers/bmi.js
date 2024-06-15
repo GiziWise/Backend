@@ -156,7 +156,7 @@ async function getIdBmiData(request, h) {
     }
     return h.response({
       status: 'success',
-      data: {
+      databmi: {
         bmi: bmi.bmi,
         category: bmi.category,
         weight: bmi.weight,
