@@ -5,8 +5,10 @@
 - Sign Up
 - Sign In
 - BMI Calculator
+- Predict food
 - Me/Profile
 - Logout
+- Error code
 
 ## Sign Up
 
@@ -68,8 +70,9 @@
 | ------------------ | ------ | ------------- |
 | weight             | int    | Weight in kg  |
 | height             | int    | Height in cm  |
-| dob                | date   | Date of birth |
 | gender             | String | Gender        |
+| dob                | date   | Date of birth |
+
 
 ### Response
 | Parameter          | Type   | Description         |
@@ -109,6 +112,35 @@
         "gender": "male",
         "healthyWeightRange": "53.5 kg - 72 kg",
         "calory": 2046.9
+    }
+}
+```
+## Predict food
+- [POST] /predict
+- Cookie token
+
+### Request body
+| Parameter    | Type   | Description   |
+| ------------ | ------ | ------------- |
+| nama_makanan | String | Nama          |
+| portion_size | float  | Portion size  |
+
+### Response
+| Parameter | Type   | Description      |
+| --------- | ------ | ---------------- |
+| makanan   | string | nama makanan     |
+| energi    | float  | energi per porsi |
+| lemak     | float  | lemak makanan    |
+| protein   | float  | protein maknan   |
+
+```
+{
+    "status": "success",
+    "data": {
+        "makanan": "Nasi",
+        "energi": 89.21,
+        "lemak": 1.52,
+        "protein": 1.52
     }
 }
 ```
@@ -162,5 +194,52 @@
 {
     "status": "success",
     "message": "Logout successfully",
+}
+```
+
+## Error code
+### Success
+200 OK
+```
+{
+    "status": "success",
+    "message": "Login successfully",
+}
+```
+201 Created
+
+```
+{
+    "status": "success",
+    "message": "User created successfully"
+}
+```
+### Client error
+400 Bad request
+```
+{
+    "status": "fail",
+    "message": "Must be a valid date of birth"
+}
+```
+401 Unauthorized
+```
+{
+    "status": "fail",
+    "message": "Unauthorized"
+}
+```
+404
+```
+{
+    "status": "fail",
+    "message": "User not found"
+}
+```
+### Server error
+```
+{
+    "status": "fail",
+    "message": "Internal Server Error"
 }
 ```
