@@ -165,7 +165,7 @@
 ```
 {
     "status": "success",
-    "data": {
+    "dataakun": {
         "id": 8,
         "nama": "namaaku",
         "email": "test@example.com",
