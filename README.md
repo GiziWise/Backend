@@ -2,13 +2,13 @@
 
 ## Table of Contents
 
-- Sign Up
-- Sign In
-- BMI Calculator
-- Predict food
-- Me/Profile
-- Logout
-- Error code
+- [Sign Up](#sign-up)
+- [Sign In](#sign-in)
+- [BMI Calculator](#bmi-calculator)
+- [Predict food](#predict-food)
+- [Me/Profile](#meprofile)
+- [Logout](#logout)
+- [Error code](#error-code)
 
 ## Sign Up
 
