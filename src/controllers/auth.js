@@ -127,7 +127,7 @@ async function currentUser(request, h) {
           nama: user.nama,
           email: user.email,
           bmi: null,
-        }
+        },
       }).code(200);
     }
 
@@ -143,7 +143,7 @@ async function currentUser(request, h) {
           age: bmi.age,
           weight: bmi.weight,
           height: bmi.height,
-        }
+        },
       },
     }).code(200);
   } catch (error) {
@@ -155,7 +155,6 @@ async function currentUser(request, h) {
     }).code(500);
   }
 }
-
 
 async function logoutUser(request, h) {
   try {
