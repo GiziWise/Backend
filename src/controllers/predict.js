@@ -21,7 +21,7 @@ async function predictModel(request, h) {
     };
     return h.response({
       status: 'success',
-      data: formatResponse,
+      dataprediksi: formatResponse,
     }).code(200);
   } catch (error) {
     return h.response({ status: 'fail', message: 'Failed to predict model' }).code(500);
