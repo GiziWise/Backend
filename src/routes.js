@@ -2,7 +2,7 @@ const {
   signupUser, signinUser, currentUser, logoutUser,
 } = require('./controllers/auth');
 const { calculateBmi, getIdBmiData } = require('./controllers/bmi');
-const { predictModel } = require('./controllers/predict');
+const { addPredict, getPredictions } = require('./controllers/predict');
 
 const routes = [
   {
@@ -31,14 +31,6 @@ const routes = [
     },
     handler: calculateBmi,
   },
-  // {
-  //   method: 'GET',
-  //   path: '/bmi',
-  //   options: {
-  //     auth: 'jwt',
-  //   },
-  //   handler: getAllBmiData,
-  // },
   {
     method: 'GET',
     path: '/bmi',
@@ -53,7 +45,15 @@ const routes = [
     options: {
       auth: 'jwt',
     },
-    handler: predictModel,
+    handler: addPredict,
+  },
+  {
+    method: 'GET',
+    path: '/predict',
+    options: {
+      auth: 'jwt',
+    },
+    handler: getPredictions,
   },
   {
     method: 'GET',
