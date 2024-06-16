@@ -1,3 +1,9 @@
+# Architechture
+
+# Description
+This project is source code to handle backend for GiziWise Application.
+Build using node.js and hapi framework, deployment using cloud run, cloud sql services of GCP.
+
 # API Docs Giziwise
 
 ## Table of Contents
@@ -103,7 +109,7 @@
 ```
 {
     "status": "success",
-    "data": {
+    "databmi": {
         "bmi": 24.2,
         "category": "Normal",
         "weight": 70,
@@ -136,12 +142,42 @@
 ```
 {
     "status": "success",
-    "data": {
+    "dataprediksi": {
         "makanan": "Nasi",
         "energi": 89.21,
         "lemak": 1.52,
         "protein": 1.52
     }
+}
+```
+- [GET] /predict
+- Cookie token
+
+### Response
+| Parameter | Type   | Description      |
+| --------- | ------ | ---------------- |
+| makanan   | string | nama makanan     |
+| energi    | float  | energi per porsi |
+| lemak     | float  | lemak makanan    |
+| protein   | float  | protein maknan   |
+
+```
+{
+    "status": "success",
+    "datamakanan": [
+        {
+            "nama_makanan": "Gemblong",
+            "energi": 210.3,
+            "lemak": 40.5,
+            "protein": 12.75
+        },
+        {
+            "nama_makanan": "Nasi",
+            "energi": 88.33,
+            "lemak": 1.5,
+            "protein": 1.5
+        }
+    ]
 }
 ```
 
@@ -229,7 +265,7 @@
     "message": "Unauthorized"
 }
 ```
-404
+404 Not found
 ```
 {
     "status": "fail",
@@ -237,6 +273,7 @@
 }
 ```
 ### Server error
+500
 ```
 {
     "status": "fail",
