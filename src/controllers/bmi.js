@@ -24,16 +24,6 @@ const bmiSchema = Joi.object({
 
 // Function calculate BMI
 async function calculateBmi(request, h) {
-//  const { error } = bmiSchema.validate(request.payload);
-//
-//  if (error) {
-//    return h.response({ error: error.details[0].message }).code(400);
-//  }
-//
-//  // Take data request
-//  const {
-//    weight, height, gender, dob,
-//  } = request.payload;
   try {
     const {
       weight, height, gender, dob,
@@ -120,20 +110,6 @@ async function calculateBmi(request, h) {
   }
 }
 
-// Get all data BMI
-// async function getAllBmiData(request, h) {
-//   try {
-//     const allBmiData = await bmiModel.getAllBmiData();
-//     if (allBmiData.length === 0) {
-//       return h.response({ status: 'fail', message: 'No BMI data found.' }).code(404);
-//     }
-//     return h.response(allBmiData).code(200);
-//   } catch (error) {
-//     console.error('Error fetching BMI data:', error);
-//     return h.response({ error: 'Failed to fetch BMI data.' }).code(500);
-//   }
-// }
-
 // Get id data BMI
 async function getIdBmiData(request, h) {
   try {
@@ -175,6 +151,5 @@ async function getIdBmiData(request, h) {
 
 module.exports = {
   calculateBmi,
-  // getAllBmiData,
   getIdBmiData,
 };
