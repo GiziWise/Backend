@@ -106,6 +106,15 @@ async function signinUser(request, h) {
   }
 }
 
+// Function to format date to YYYY-MM-DD
+function formatDate(date) {
+  const d = new Date(date);
+  const month = `${d.getMonth() + 1}`.padStart(2, '0');
+  const day = `${d.getDate()}`.padStart(2, '0');
+  const year = d.getFullYear();
+  return `${year}-${month}-${day}`;
+}
+
 async function currentUser(request, h) {
   try {
     const { user } = request;
@@ -127,23 +136,25 @@ async function currentUser(request, h) {
           nama: user.nama,
           email: user.email,
           bmi: null,
-        }
+        },
       }).code(200);
     }
 
+    const formattedDob = formatDate(bmi.dob);
+
     return h.response({
       status: 'success',
-      data: {
+      dataakun: {
         id: user.id,
         nama: user.nama,
         email: user.email,
         bmi: {
-          dob: bmi.dob,
+          dob: formattedDob,
           gender: bmi.gender,
           age: bmi.age,
           weight: bmi.weight,
           height: bmi.height,
-        }
+        },
       },
     }).code(200);
   } catch (error) {
@@ -155,7 +166,6 @@ async function currentUser(request, h) {
     }).code(500);
   }
 }
-
 
 async function logoutUser(request, h) {
   try {

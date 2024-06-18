@@ -41,8 +41,8 @@ async function getIdBmiData(id) {
 async function getBmiByUserId(userId) {
   try {
     const [rows] = await pool.query(
-      'SELECT * FROM bmi WHERE user_id = ? ORDER BY id DESC LIMIT 1', 
-      [userId]
+      'SELECT * FROM bmi WHERE user_id = ? ORDER BY id DESC LIMIT 1',
+      [userId],
     );
     return rows.length ? rows[0] : null;
   } catch (error) {
@@ -51,5 +51,6 @@ async function getBmiByUserId(userId) {
   }
 }
 
-
-module.exports = { saveBmiData, getAllBmiData, getIdBmiData, getBmiByUserId };
+module.exports = {
+  saveBmiData, getAllBmiData, getIdBmiData, getBmiByUserId,
+};
