@@ -1,5 +1,5 @@
 # Architechture
-![Backend API]()
+![Backend API](https://raw.githubusercontent.com/rammar18/backend-api-giziwise/main/Architecture.png)
 
 # Description
 This project is source code to handle backend for GiziWise Application.
