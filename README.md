@@ -1,13 +1,17 @@
 # Architechture
+![Backend API]()
 
 # Description
 This project is source code to handle backend for GiziWise Application.
 Build using node.js and hapi framework, deployment using cloud run, cloud sql services of GCP.
+Development in local for database using mysql.
 
 # How to use
 - Clone this repo
-- Install mysql 5.7 and import giziwise.sql, example ``
-- 
+- Install mysql 5.7 and import giziwise.sql, example: `mysql -u root -p giziwise < giziwise.sql`
+- Open working directory in the terminal, type `npm install`
+- Run node.js by typing `npm run start`
+- Server will be run on `http://127.0.0.1:3000`
 
 # API Docs Giziwise
 
