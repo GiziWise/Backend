@@ -4,6 +4,11 @@
 This project is source code to handle backend for GiziWise Application.
 Build using node.js and hapi framework, deployment using cloud run, cloud sql services of GCP.
 
+# How to use
+- Clone this repo
+- Install mysql 5.7 and import giziwise.sql, example ``
+- 
+
 # API Docs Giziwise
 
 ## Table of Contents
