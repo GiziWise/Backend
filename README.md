@@ -1,3 +1,4 @@
+![6355730](https://github.com/TamarillowBonaparte/Mobile/assets/125776654/03a14379-e2cd-4e4e-af40-29f2400b61c0)
 # Architechture
 ![Backend API](https://raw.githubusercontent.com/rammar18/backend-api-giziwise/main/Architecture.png)
 
