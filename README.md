@@ -9,6 +9,7 @@ Development in local for database using mysql.
 # How to use
 - Clone this repo
 - Install mysql 5.7 and import giziwise.sql, example: `mysql -u root -p giziwise < giziwise.sql`
+- Setup environment in file .env, example in file .env.example
 - Open working directory in the terminal, type `npm install`
 - Run node.js by typing `npm run start`
 - Server will be run on `http://127.0.0.1:3000`
